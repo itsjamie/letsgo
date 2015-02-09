@@ -1,0 +1,98 @@
+An Introduction: Let's Go!
+Primatives for the Web
+19 Feb 2015
+
+Jeff Hann
+@obihann
+
+Jamie Stackhouse
+@itswzee
+
+* Why do I exist?
+
+- Concurrency (threads) in C is hard to get right.
+- Native compilation time is too long!
+- Tooling is bad.
+
+* Tooling
+
+- goimports
+- godoc
+- gorename
+- gocode
+
+* Setup
+
+In Go, once you've installed me, you get access to go binary.
+
+.link https://golang.org/doc/install Walkthrough for installing Go
+
+.image gooutput.png
+
+* Hello World
+
+.play hello.go
+
+Running through websockets, sent to a Go backend, executed, and program output is sent back, I thought it was neat.
+
+* Garbage Collected
+
+*Yay!* _or_ *Nay?*
+
+Take your pick, it makes it nice and easy.
+
+* Documentation
+
+Keep the documentation simple...
+
+  // NullTime provides a method by which we can support Nullable fields when scanning from PgSQL.
+  // For example when defining the Times type we use NullTime for the DeletedAt field.
+  //
+  // NullTime.Valid is used to check if this is a NullTime or if it has been
+  // set with a time.Time object.
+  type NullTime struct {
+    Time  time.Time
+    Valid bool //Will be true if Time is not NUL
+  }
+
+.image doc.png
+
+* Packaging
+
+Go works on a namespace basis
+
+  package doingit
+
+  type PublicType struct {
+    Exported string
+    unexported int64
+  }
+
+  func (this *PublicType) GetInt() int64 {
+    return this.unexported
+  }
+
+  func PublicApi() ([]byte, error)
+
+  func privateFunc() ([]byte, doingit.PublicType, error)
+
+* Why should WE use Go?
+
+You get a webserver that powers dl.google.com in your standard library available at net/http.
+
+You do have to be careful about cross-compiling, since we are now native code.
+
+* Memory management
+
+You are given full access to the underlying resources that are used.
+
+- Slices
+- Pointers
+
+* API servers
+
+Reference benchmarks as to why Go is a good choice. Suck it Java.
+
+* API servers (Models)
+
+* API servers (Routing)
