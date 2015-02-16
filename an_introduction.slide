@@ -8,18 +8,11 @@ Jeff Hann
 Jamie Stackhouse
 @itswzee
 
-* Why do I exist?
+* Why Go exists
 
-- Concurrency (threads) in C is hard to get right.
-- Native compilation time is too long!
-- Tooling is bad.
-
-* Tooling
-
-- goimports
-- godoc
-- gorename
-- gocode
+- Conncurrency is hard in most langauges.
+- Native compilation doesn't need to take hours.
+- Tooling should be better.
 
 * Setup
 
@@ -28,6 +21,19 @@ In Go, once you've installed me, you get access to go binary.
 .link https://golang.org/doc/install Walkthrough for installing Go
 
 .image gooutput.png
+
+* Tooling
+
+- goimports -- Code formatting and automatic imports
+- godoc -- Documentation
+- gorename -- Refactoring
+- gocode -- Code Completion
+- go run -race -- Race Detection
+- go vet -- Think Compiler Warnings
+
+* Why should we use Go?
+
+You get a webserver that powers dl.google.com in your standard library, _net/http_.
 
 * Hello World
 
@@ -38,8 +44,6 @@ Running through websockets, sent to a Go backend, executed, and program output i
 * Garbage Collected
 
 *Yay!* _or_ *Nay?*
-
-Take your pick, it makes it nice and easy.
 
 * Documentation
 
@@ -57,30 +61,13 @@ Keep the documentation simple...
 
 .image doc.png
 
-* Packaging
+* Packaging - what's public?
 
 Go works on a namespace basis
 
-  package doingit
+_github.com/golibs/example_
 
-  type PublicType struct {
-    Exported string
-    unexported int64
-  }
-
-  func (this *PublicType) GetInt() int64 {
-    return this.unexported
-  }
-
-  func PublicApi() ([]byte, error)
-
-  func privateFunc() ([]byte, doingit.PublicType, error)
-
-* Why should WE use Go?
-
-You get a webserver that powers dl.google.com in your standard library available at net/http.
-
-You do have to be careful about cross-compiling, since we are now native code.
+.code example.go
 
 * Memory management
 
@@ -96,3 +83,8 @@ Reference benchmarks as to why Go is a good choice. Suck it Java.
 * API servers (Models)
 
 * API servers (Routing)
+
+* Resources
+
+.link http://blog.golang.org/concurrency-is-not-parallelism
+.link http://blog.golang.org/race-detector
