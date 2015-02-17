@@ -1,32 +1,22 @@
 package main
 
 import (
-	"github.com/jamie-stackhouse/letsgo/Server/controller"
-	"io"
+	"github.com/jamie-stackhouse/letsgo/Server/controllers"
 	"log"
 	"net/http"
 )
 
 var (
-	port       string      = ":8080"
-	controller *Controller = NewController()
+	port       string                  = ":8080"
+	controller *controllers.Controller = controllers.NewController()
 )
-
-func (this *Controller) DefaultRoute(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "hello, world\n")
-}
-
-func (this *Controller) Hello(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "hello, world\n")
-}
 
 func main() {
 	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", controller.DefaultRoute)
-	mux.HandleFunc("/hello", controller.Hello)
+	controller.Attach(mux)
 
 	if err := http.ListenAndServe(port, mux); err != nil {
+
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
