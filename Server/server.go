@@ -16,6 +16,8 @@ func main() {
 		templates = flag.String("TEMPLATES", "templates", "The location of our templates")
 	)
 
+	flag.Parse()
+
 	config := controllers.ControllerConfig{
 		Host:      *host,
 		Port:      *port,
