@@ -12,8 +12,9 @@ import (
 )
 
 type ControllerConfig struct {
-	Host string
-	Port string
+	Host      string
+	Port      string
+	Templates string
 }
 
 type Controller struct {
@@ -66,7 +67,9 @@ func (this *Controller) DefaultRoute(w http.ResponseWriter, r *http.Request) {
 	user := models.NewUser("Jeff")
 	json.Unmarshal(body, &user)
 
-	template, err := template.ParseFiles("index.html")
+	filename := "index.html"
+	templatePath := fmt.Sprintf("%s/%s", this.config.Templates, filename)
+	template, err := template.ParseFiles(templatePath)
 
 	if err != nil {
 		log.Fatal(err)

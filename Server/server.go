@@ -11,13 +11,15 @@ import (
 
 func main() {
 	var (
-		host = flag.String("HOST", "localhost", "The host name the server is running on")
-		port = flag.String("PORT", ":8080", "The server port")
+		host      = flag.String("HOST", "localhost", "The host name the server is running on")
+		port      = flag.String("PORT", ":8080", "The server port")
+		templates = flag.String("TEMPLATES", "templates", "The location of our templates")
 	)
 
 	config := controllers.ControllerConfig{
-		Host: *host,
-		Port: *port,
+		Host:      *host,
+		Port:      *port,
+		Templates: *templates,
 	}
 
 	controller := controllers.NewController(&config)
