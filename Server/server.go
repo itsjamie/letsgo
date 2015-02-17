@@ -1,13 +1,19 @@
 package main
 
 import (
-	"github.com/jamie-stackhouse/letsgo/Server/controllers"
+	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/jamie-stackhouse/letsgo/Server/controllers"
 )
 
+type Config struct {
+	port string
+}
+
 var (
-	port       string                  = ":8080"
+	config     *Config
 	controller *controllers.Controller = controllers.NewController()
 )
 
@@ -15,8 +21,13 @@ func main() {
 	mux := http.NewServeMux()
 	controller.Attach(mux)
 
-	if err := http.ListenAndServe(port, mux); err != nil {
+	config := Config{
+		port: ":8080",
+	}
 
-		log.Fatal("ListenAndServe: ", err)
+	fmt.Printf("Listening on port: %s\n", config.port)
+
+	if err := http.ListenAndServe(config.port, mux); err != nil {
+		log.Fatal(err)
 	}
 }

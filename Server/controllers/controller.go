@@ -1,25 +1,38 @@
 package controllers
 
 import (
-	"io"
+	"fmt"
+	"html/template"
+	"log"
 	"net/http"
+
+	"github.com/jamie-stackhouse/letsgo/Server/models"
 )
 
-type Controller struct{}
+type Controller struct {
+	handler *http.Handler
+}
 
+// Attach accepts a http.ServeMux object and then creates all routes
 func (this *Controller) Attach(mux *http.ServeMux) {
 	mux.HandleFunc("/", this.DefaultRoute)
-	mux.HandleFunc("/hello", this.Hello)
 }
 
+// Return a new Controller object with its own http.Handler
 func NewController() *Controller {
-	return &Controller{}
+	return &Controller{handler: new(http.Handler)}
 }
 
-func (this *Controller) DefaultRoute(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "hello, world\n")
-}
+func (this *Controller) DefaultRoute(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("%s Requested\n", r.URL)
 
-func (this *Controller) Hello(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "hello, world\n")
+	user := models.NewUser("jeff")
+
+	template, err := template.ParseFiles("index.html")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	template.Execute(w, user)
 }
