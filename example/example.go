@@ -1,4 +1,4 @@
-package example
+package main
 
 type PublicType struct {
 	Exported   string
@@ -8,8 +8,6 @@ type PublicType struct {
 func (this *PublicType) GetInt() int64 {
 	return this.unexported
 }
-
-func (this *PublicType) privateFunc() {}
 
 func PublicApi() ([]byte, error) {}
 
