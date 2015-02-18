@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -28,8 +27,6 @@ func main() {
 	mux := http.NewServeMux()
 
 	controller.Attach(mux)
-
-	fmt.Printf("Listening on http://%s%s\n", *host, *port)
 
 	if err := http.ListenAndServe(*port, mux); err != nil {
 		log.Fatal(err)

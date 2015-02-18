@@ -11,10 +11,11 @@ import (
 	"github.com/jamie-stackhouse/letsgo/Server/models"
 )
 
+// ControllerConfig allows for storage of the host, port, and template location
 type ControllerConfig struct {
-	Host      string
-	Port      string
-	Templates string
+	Host      string `json:"host"`
+	Port      string `json:"port"`
+	Templates string `json:"-"`
 }
 
 type Controller struct {
@@ -36,15 +37,21 @@ func NewController(config *ControllerConfig) *Controller {
 	}
 }
 
+// APIRoute creates a new User object with the username 'jeff' then returns the marshalled object
 func (this *Controller) APIRoute(w http.ResponseWriter, r *http.Request) {
+	// create a new User object for 'jeff'
 	user := models.NewUser("Jeff")
+
+	// marshal the object to JSON
 	userData, err := json.Marshal(user)
 
+	// incase of error return a internal server error (500) and exit the function
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
+	// write the JSON object to the response
 	w.Write(userData)
 }
 
@@ -52,6 +59,7 @@ func (this *Controller) DefaultRoute(w http.ResponseWriter, r *http.Request) {
 	url := fmt.Sprintf("http://%s%s/API", this.config.Host, this.config.Port)
 	userData, err := http.Get(url)
 
+	// incase of error return a internal server error (500) and exit the function
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -59,6 +67,7 @@ func (this *Controller) DefaultRoute(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(userData.Body)
 
+	// incase of error return a internal server error (500) and exit the function
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
