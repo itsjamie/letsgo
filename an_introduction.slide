@@ -20,7 +20,7 @@ In Go, once you've installed me, you get access to go binary.
 
 .link https://golang.org/doc/install Walkthrough for installing Go
 
-.image gooutput.png
+.image Examples/gooutput.png
 
 * Tooling
 
@@ -50,7 +50,7 @@ Code written on Go 1.0 will build on Go 1.x
 
 * Say Hi!
 
-.play example/hello.go
+.play Examples/hello.go
 
 * Goroutines
 
@@ -92,13 +92,13 @@ Go works on a namespace basis
 
 _github.com/jamie-stackhouse/letsgo/example_
 
-.code example/example.go
+.code Examples/example.go
 
 * Slices
 	
 Slices can be thought of like an array, with a few special properties...
 
-.play example/slice.go
+.play Examples/slice.go
 
 They share the same memory.
 
@@ -106,19 +106,19 @@ They share the same memory.
 
 Concurrency is hard when you are dealing with communication between all the moving parts. Channels are the language built-in method of simplifying this.
 
-.play example/channel.go 
+.play Examples/channel.go 
 
 * Range
 
 Range is like a super powered for each, it works on slices, arrays, channels, and strings.
 
-.play example/range.go /PICK1 OMIT/,/END1 OMIT/
+.play Examples/range.go /PICK1 OMIT/,/END1 OMIT/
 
 * Select
 
 With so many channels potentially open, the Go team added a _Select_ block, which is a method of supporting reading from multiple channels, or performing non-blocking channel operations.
 
-.play example/select.go /PICK1 OMIT/,/END1 OMIT/
+.play Examples/select.go /PICK1 OMIT/,/END1 OMIT/
 
 * API servers
 
