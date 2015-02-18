@@ -90,7 +90,7 @@ Keep the documentation simple...
 
 Go works on a namespace basis
 
-_github.com/jamie-stackhouse/letsgo/example_
+_github.com/jamie-stackhouse/letsgo/example/example.go_
 
 .code Examples/example.go
 
