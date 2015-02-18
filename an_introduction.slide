@@ -1,0 +1,137 @@
+An Introduction: Let's Go!
+Primatives for the Web
+19 Feb 2015
+
+Jeff Hann
+@obihann
+
+Jamie Stackhouse
+@itswzee
+
+* Why Go exists
+
+- Concurrency is hard to implement in most langauges.
+- Native compilation doesn't need to take hours.
+- Tooling should be better.
+
+* Setup
+
+In Go, once you've installed me, you get access to go binary.
+
+.link https://golang.org/doc/install Walkthrough for installing Go
+
+.image gooutput.png
+
+* Tooling
+
+- *goimports*, _Code_ _formatting_ _and_ _import_ _detection_ _(gofmt_ _supersized)_
+- *godoc*, _Documentation_ _in_ _your_ _code!_
+- *gorename*, _Refactoring_ _support_
+- *gocode*, _Code_ _Completion._
+- *golint*, _Tips_ _towards_ _"idiomatic"_ _code_
+- *go* *run* *-race*, _Race_ _Detection_
+- *go* *vet*, _Compiler_ _Warnings_
+
+* Why should we use Go?
+
+One simple reason, in my mind. You won't _need_, to use another language.
+
+- Assembly
+- C via Cgo 
+- Go
+
+So, it is a language where it is possible to hand optimize the generated assembly!
+
+But you also get a web server that Google trusts to power _dl.google.com_ in your standard library?
+
+* The Go 1 Contract
+
+Code written on Go 1.0 will build on Go 1.x
+
+* Say Hi!
+
+.play example/hello.go
+
+* Goroutines
+
+	Goroutines are part of making concurrency easy to use. The idea, which has been around
+	for a while, is to multiplex independently executing functions—coroutines—onto a set 
+	of threads. When a coroutine blocks, such as by calling a blocking system call, the 
+	run-time automatically moves other coroutines on the same operating system thread to a 
+	different, runnable thread so they won't be blocked. The programmer sees none of this, 
+	which is the point. The result, which we call goroutines, can be very cheap: 
+	they have little overhead beyond the memory for the stack, which is just a few kilobytes.
+
+	To make the stacks small, Go's run-time uses resizable, bounded stacks. A newly minted 
+	goroutine is given a few kilobytes, which is almost always enough. When it isn't, the 
+	run-time grows (and shrinks) the memory for storing the stack automatically, allowing 
+	many goroutines to live in a modest amount of memory. The CPU overhead averages about 
+	three cheap instructions per function call. It is practical to create hundreds of 
+	thousands of goroutines in the same address space. If goroutines were just threads, 
+	system resources would run out at a much smaller number.
+
+Read the above, or listen to me.
+
+Wait.. it resizes my memory for me... does that mean... could it be..?
+
+* Garbage Collection
+
+*Yay!* _or_ *Nay?*
+
+Thoughts, anyone?
+
+* On Documentation
+
+Keep the documentation simple...
+
+.link http://localhost:8080/pkg/ Take a look
+
+* Packaging - what's public?
+
+Go works on a namespace basis
+
+_github.com/jamie-stackhouse/letsgo/example_
+
+.code example/example.go
+
+* Slices
+	
+Slices can be thought of like an array, with a few special properties...
+
+.play example/slice.go
+
+They share the same memory.
+
+* Channels
+
+Concurrency is hard when you are dealing with communication between all the moving parts. Channels are the language built-in method of simplifying this.
+
+.play example/channel.go 
+
+* Range
+
+Range is like a super powered for each, it works on slices, arrays, channels, and strings.
+
+.play example/range.go /PICK1 OMIT/,/END1 OMIT/
+
+* Select
+
+With so many channels potentially open, the Go team added a _Select_ block, which is a method of supporting reading from multiple channels, or performing non-blocking channel operations.
+
+.play example/select.go /PICK1 OMIT/,/END1 OMIT/
+
+* API servers
+
+Reference benchmarks as to why Go is a good choice.
+
+* API servers (Models)
+
+* API servers (Routing)
+
+* Resources
+
+.link http://blog.golang.org/concurrency-is-not-parallelism
+.link http://blog.golang.org/race-detector
+.link http://golang.org/doc/faq
+
+* Questions?
