@@ -133,6 +133,16 @@ So whats with `json:"name"` ?
 
 * API servers (Routing)
 
+Let's make a very simple server, with no routes.
+
+.play Examples/router.go /PICK1 OMIT/,/END1 OMIT/
+
+But what about the routes?
+
+.play Examples/router_2.go /PICK1 OMIT/,/END1 OMIT/
+
+Nice and easy.
+
 * Resources
 
 .link http://blog.golang.org/concurrency-is-not-parallelism
