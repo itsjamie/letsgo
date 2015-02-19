@@ -141,5 +141,6 @@ Nice and easy.
 .link http://blog.golang.org/concurrency-is-not-parallelism
 .link http://blog.golang.org/race-detector
 .link http://golang.org/doc/faq
+.link http://gobyexample.com
 
 * Questions?
