@@ -3,10 +3,8 @@ Primatives for the Web
 19 Feb 2015
 
 Jeff Hann
-@obihann
 
 Jamie Stackhouse
-@itswzee
 
 * Why Go exists
 
@@ -120,19 +118,14 @@ With so many channels potentially open, the Go team added a _Select_ block, whic
 
 .play Examples/select.go /PICK1 OMIT/,/END1 OMIT/
 
-* API servers
-
-Reference benchmarks as to why Go is a good choice.
-
-* API servers (Models)
+* Working with Data
 .code Server/models/user.go
 
 So whats with `json:"name"` ?
 
 .play Examples/model.go /PICK1 OMIT/,/END1 OMIT/
 
-* API servers (Routing)
-
+* Running an HTTP server
 Let's make a very simple server, with no routes.
 
 .play Examples/router.go /PICK1 OMIT/,/END1 OMIT/
