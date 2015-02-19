@@ -125,6 +125,11 @@ With so many channels potentially open, the Go team added a _Select_ block, whic
 Reference benchmarks as to why Go is a good choice.
 
 * API servers (Models)
+.code Server/models/user.go
+
+So whats with `json:"name"` ?
+
+.play Examples/model.go /PICK1 OMIT/,/END1 OMIT/
 
 * API servers (Routing)
 

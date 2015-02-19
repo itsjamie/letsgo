@@ -16,6 +16,7 @@ func ExampleControllerConfig() {
 
 	url := fmt.Sprintf("http://%s%s", config.Host, config.Port)
 	fmt.Printf(url)
+
 	// Output: http://localhost:8080
 }
 
@@ -37,10 +38,11 @@ func ExampleControllerConfig_flags() {
 
 	url := fmt.Sprintf("http://%s%s", config.Host, config.Port)
 	fmt.Printf(url)
+
 	// Output: http://localhost:8080
 }
 
-func ExampleNewUser() {
+func ExampleNewController() {
 	// Generate a basic config to specify the host, port, and template location
 	config := ControllerConfig{
 		Host:      "localhost",
